@@ -1,3 +1,10 @@
+/**
+ * 作者：林瑞玉
+	时间：2017-02-24
+	描述：路由设置
+ */
+;
+(function(window, document, undefined) {
 angular.module('app',['ui.router']).config(['$stateProvider', '$urlRouterProvider',
 function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /
@@ -26,3 +33,5 @@ function($stateProvider, $urlRouterProvider) {
     })
     
 }]);
+	
+})(window, document);

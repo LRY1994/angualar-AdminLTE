@@ -1,15 +1,41 @@
-angular.module('myApp', [])
-.controller('LoginController', function($scope) {
-	$scope.user= {
-		name:'',
-		password:''
+'use strict';
+
+angular.module('loginApp')
+.controller('LoginCtrl', [ '$scope', '$state', '$modalInstance' , '$window', 'Auth', 
+function($scope, $state, $modalInstance, $window, Auth ) {
+	$scope.credentials = {};
+	$scope.loginForm = {};
+	$scope.error = false;
+	
+	//when the form is submitted
+	$scope.submit = function() {
+		$scope.submitted = true;
+		if (!$scope.loginForm.$invalid) {
+			$scope.login($scope.credentials);
+		} else {
+			$scope.error = true;
+			return;
+		}
 	};
-	$scope.login = function(user){
-		
+
+	//Performs the login function, by sending a request to the server with the Auth service
+	$scope.login = function(credentials) {
+		$scope.error = false;
+		Auth.login(credentials, function(user) {
+			//success function
+			$modalInstance.close();
+			$state.go('home');
+		}, function(err) {
+			console.log("error");
+			$scope.error = true;
+		});
+	};
+	
+	// if a session exists for current user (page was refreshed)
+	// log him in again
+	if ($window.sessionStorage["userInfo"]) {
+		var credentials = JSON.parse($window.sessionStorage["userInfo"]);
+		$scope.login(credentials);
 	}
-// 如果为true，显示为登录表单
-// 如果为false，显示为注册表单
-$scope.showLoginForm = true;
-$scope.sendLogin = function() {}
-$scope.sendRegister = function() {}
-});
+
+} ]);
