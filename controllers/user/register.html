@@ -1,9 +1,19 @@
 <!--
 	作者：林瑞玉
 	时间：2017-02-24
-	描述：注册表单
+	描述：注册页面
 -->
-<form action="../../index.html" method="post">
+<div class="hold-transition register-page" style="height: 100%;">
+<div class="register-box">
+  <div class="register-logo">
+    <b>Admin</b>
+  </div>
+
+  <div class="register-box-body">
+    <p class="login-box-msg">注册账号</p>
+
+    <!--描述：注册表单-->
+<form name="registerForm"  ng-submit="submit()">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Full name">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -30,11 +40,17 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat" ng-disabled="registerForm.$invalid">Register</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
+
+
+    <a ui-sref="login" class="text-center">已有账号</a>
+  </div>  
+</div>
+
 <script>
   $(function () {
     $('input').iCheck({
@@ -44,3 +60,5 @@
     });
   });
 </script>
+</body>
+</html>

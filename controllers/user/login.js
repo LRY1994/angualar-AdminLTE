@@ -1,8 +1,6 @@
-'use strict';
-
-angular.module('loginApp')
-.controller('LoginCtrl', [ '$scope', '$state', '$modalInstance' , '$window', 'Auth', 
-function($scope, $state, $modalInstance, $window, Auth ) {
+angular.module('com.pupil.app')
+.controller('LoginController', [ '$scope', '$state', '$window', 'AuthService', 
+function($scope, $state, $window, AuthService ) {
 	$scope.credentials = {};
 	$scope.loginForm = {};
 	$scope.error = false;
@@ -13,7 +11,7 @@ function($scope, $state, $modalInstance, $window, Auth ) {
 		if (!$scope.loginForm.$invalid) {
 			$scope.login($scope.credentials);
 		} else {
-			$scope.error = true;
+			$scope.submitted = false;
 			return;
 		}
 	};
@@ -21,9 +19,8 @@ function($scope, $state, $modalInstance, $window, Auth ) {
 	//Performs the login function, by sending a request to the server with the Auth service
 	$scope.login = function(credentials) {
 		$scope.error = false;
-		Auth.login(credentials, function(user) {
-			//success function
-			$modalInstance.close();
+		AuthService.login(credentials, function(user) {
+			//success function			
 			$state.go('home');
 		}, function(err) {
 			console.log("error");
