@@ -4,8 +4,8 @@
 	描述：路由设置
  */
 
-angular.module('com.pupil.app').config(['$stateProvider', '$urlRouterProvider',
-function($stateProvider, $urlRouterProvider) {
+angular.module('com.pupil.app')
+.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /
   $urlRouterProvider.when("","/notFound");
 

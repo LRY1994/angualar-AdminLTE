@@ -1,3 +1,4 @@
+'use strict';
 angular.module('com.pupil.app')
 .controller('LoginController', [ '$scope', '$state', '$window', 'AuthService', 
 function($scope, $state, $window, AuthService ) {

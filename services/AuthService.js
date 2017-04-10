@@ -8,6 +8,26 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS) {
 	
 	//the login function
 	AuthService.login = function(user, success, error) {
+//		$http({
+//			method:'GET',
+//			url : '',
+//			params:{
+//				userName:user.username
+//			} 
+//		}).success(function(data,status,headers,config){
+//			if(user.username == data.username && user.password == data.password){
+//				$window.sessionStorage["userInfo"] = JSON.stringify(data);
+//				delete loginData.password;
+//				Session.create(data);
+//				$rootScope.currentUser = data;
+//				$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);				
+//				success(data);
+//			}
+//		}).error(function(data,status,headers,config){
+//			$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+//			error();
+//		});
+		
 		$http.get('misc/users.json').success(function(data) {
 		
 		//this is my dummy technique, normally here the 

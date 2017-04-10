@@ -1,7 +1,7 @@
 /*
  * 总的页面控制器
  */
-
+'use strict';
 angular.module('com.pupil.app').
 controller('HomeIndexController', ['$scope', '$rootScope', 'AuthService', 'AUTH_EVENTS',
 function($scope, $rootScope, AuthService, AUTH_EVENTS){
