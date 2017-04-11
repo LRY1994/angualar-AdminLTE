@@ -16,15 +16,15 @@ var gulp = require('gulp'),
     es = require('event-stream');
 
 var cssFiles = [
-	'libraries/bootstrap/css/bootstrap.min.css',//这个加入的话font-awesome的图显示不出来
+	'libraries/bootstrap/css/bootstrap.min.css',
 	'libraries/font-awesome-4.7.0/css/font-awesome.min.css',
 	'libraries/datatables/dataTables.bootstrap.css',
 	'libraries/AdminLTE/css/AdminLTE.min.css',
 	'libraries/AdminLTE/css/skins/_all-skins.min.css',
-	'libraries/iCheck/square/blue.css'//这个也是显示不出来
+	'libraries/iCheck/square/blue.css'//这个显示不出来
 ];
 var ngScripts = [
-	'index.js',
+	'index.js',	
 	'configs/**/*.js',
 	'services/**/*.js',	
 	'components/**/*.js'		
@@ -66,11 +66,18 @@ gulp.task('minifyLibScripts',function(){
     
 gulp.task('minifyNgScripts',function(){
 	console.log("把HTML模板合并成一个文件");
-	var tpl = gulp.src(['./components/*.html','./pages/*.html'])
- 			  .pipe(templateCache());
- 			  
+	var ctpl = gulp.src(['./components/*.html'])
+// 			  .pipe(templateCache());
+ 			  .pipe(templateCache({                
+                 root: 'components'
+            }));
+    var ptpl = gulp.src(['./pages/*.html'])
+// 			  .pipe(templateCache());
+ 			  .pipe(templateCache({                
+                 root: 'pages'
+            }));
  	console.log('压缩ngScripts：');
-    return es.merge(es.merge(gulp.src(ngScripts),tpl)
+    return es.merge(es.merge(gulp.src(ngScripts),ctpl,ptpl)
     		  .pipe(ngAnnotate())
     		  .pipe(concat('ng.min.js'))  
     		  .pipe(gulp.dest('./dist/js')));

@@ -15,5 +15,4 @@ npm install---安装gulp
 gulp clean ----第一次使用gulp不用这个
 gulp build或者gulp
 把dist/font改成dist/fonts---因为同名fonts复制不了
-把ng.min.js里面的templateUrl全部改成"**.*"的形式才成正确加载------因为使用了templateCache
 把dist/index.html里面的多余文件删掉，改成只有dist里面的css和js
