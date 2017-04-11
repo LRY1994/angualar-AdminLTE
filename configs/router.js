@@ -12,34 +12,32 @@ angular.module('com.pupil.app')
   $stateProvider
   	.state('home', {
       url: "/",
-      templateUrl: "controllers/home/index.html"
-//    controller:"HomeIndexController"
+      templateUrl: "pages/home.html"
     })
   	.state('notFound', {
     url: '/notFound',
-    templateUrl: 'controllers/home/notFound.html'
-//  controller: 'HomeNotFoundController'
+    templateUrl: 'pages/notFound.html'
   })
   	.state('login', {
       url: "/login",
-      templateUrl: "controllers/user/login.html",	
-    controller: 'LoginController'
+      templateUrl: "pages/login.html",	
+
     })
     .state('register', {
       url: "/register",
-      templateUrl: "controllers/user/register.html"	
-//    controller: 'RegisterController'	 
+      templateUrl: "pages/register.html"	
+	 
     })
      
     .state('home.page1', {
       url: "data/page1",
-      templateUrl: "controllers/data/1.html",
-      controller: ''	 
+      templateUrl: "pages/1.html",
+    	 
     })
     .state('home.page2', {
       url: "data/page2",
-      templateUrl: "controllers/data/2.html",	
-      controller: ''	 
+      templateUrl: "pages/2.html",	
+     	 
     })
     
 }]);

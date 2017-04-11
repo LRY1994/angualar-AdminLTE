@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="com.pupil.app">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +30,8 @@
 		height:100% !important;
 	}
 </style>
-<body ng-app="com.pupil.app" 
+<body  
+	controller="HomeIndexController"
 	class="hold-transition skin-blue sidebar-mini" 
 	style="background: #d2d6de; ">
 
@@ -59,29 +60,27 @@
 <!-- DataTables -->
 <script src="libraries/datatables/jquery.dataTables.min.js"></script>
 <script src="libraries/datatables/dataTables.bootstrap.min.js"></script>
-<script src="dist/js/all.js"></script>
+<!--<script src="dist/js/all.js"></script>-->
 
-<!--angualar 1.4
+<!--angualar 1.4-->
 <script src="libraries/angular/angular.min.js"></script>
 <script src="libraries/angular/angular-ui-router.js"></script>
-<script src="app.js"></script>
+<script src="index.js"></script>
 <script src="configs/config.js"></script>
 <script src="configs/router.js"></script>
-<script src="configs/run.js"></script>-->
-<!--angualar/controllers
-<!--<script src="controllers/home/index.js"></script>
-<script src="controllers/home/notFound.js"></script>
-<script src="controllers/user/login.js"></script>
-<script src="controllers/user/register.js"></script>-->
-<!--angualar/directives
+<script src="configs/run.js"></script>
+
+<!--angualar/directives-->
 <script src="components/header.js"></script>
 <script src="components/breadcrumb.js"></script>
 <script src="components/sidebar.js"></script>
-<script src="components/footer.js"></script>-->
-<!--angualar/services
+<script src="components/footer.js"></script>
+<script src="components/loginform.js"></script>
+<script src="components/registerform.js"></script>
+<!--angualar/services-->
 <script src="services/AuthInterceptor.js"></script>
 <script src="services/Session.js"></script>
-<script src="services/AuthService.js"></script>-->
+<script src="services/AuthService.js"></script>
 
 </body>
 </html>

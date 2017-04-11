@@ -1,11 +1,12 @@
 angular.module('com.pupil.app')
 .run(function($rootScope, $state, AuthService, AUTH_EVENTS) {
-	
+	$rootScope.currentUser = null;	
 	//before each state change, check if the user is logged in
 	//and authorized to move onto the next state
 	$rootScope.$on('$stateChangeStart', function (event, next) {	   
 	        // user is not logged in
-	        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+	     $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+	      
 	      }
 	    
 	);
@@ -22,5 +23,6 @@ angular.module('com.pupil.app')
 	$rootScope.logout = function(){
 		AuthService.logout();
 	};
+	
 
 });

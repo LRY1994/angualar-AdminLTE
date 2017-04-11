@@ -25,10 +25,9 @@ var cssFiles = [
 var jsFiles = [
 	'libraries/angular/angular.min.js',
 	'libraries/angular/angular-ui-router.js',
-	'app.js',
+	'index.js',
 	'configs/**/*.js',
-	'services/**/*.js',
-	'controllers/**/*.js',
+	'services/**/*.js',	
 	'components/**/*.js'		
 		
 ];
@@ -59,15 +58,16 @@ gulp.task('clean',function(){
 gulp.task('build',['clean'],function(){
 	 console.log('压缩JS：');
 	gulp.src(jsFiles)
+	.pipe(ngAnnotate({single_quotes: true}))
     .pipe(concat('all.js')) // 合并 JavaScript ，并设置合并后的文件名
-    //.pipe(uglify()) // 执行 JavaScript 压缩
-    .pipe(gulp.dest('./dist/js'));
+    .pipe(uglify()) // 执行 JavaScript 压缩
+    .pipe(gulp.dest('./dist'));
     
     console.log('压缩CSS：');
     gulp.src(cssFiles)
     .pipe(concat('all.css')) // 合并 CSS ，并设置合并后的文件名
 //  .pipe(minifyCss()) // 执行 CSS 压缩
-    .pipe(gulp.dest('./dist/stylesheet'));
+    .pipe(gulp.dest('./dist));
     
     console.log('复制font-awesome：');
     gulp.src('libraries/font-awesome-4.7.0/**')

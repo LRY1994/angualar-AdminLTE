@@ -37,3 +37,12 @@ function($scope, $state, $window, AuthService ) {
 	}
 
 } ]);
+
+angular.module('com.pupil.app').directive('pLoginform', function () {
+  return {
+    restrict: 'EA',
+    scope: {},
+    templateUrl: 'components/loginform.html',
+    controller: 'LoginController'
+  };
+});

@@ -1,4 +1,5 @@
 'use strict';
+
 angular.module('com.pupil.app')
 .controller('RegisterController', [ '$scope', '$state', function($scope, $state) {
 	$scope.credentials = {};
@@ -42,3 +43,12 @@ angular.module('com.pupil.app')
 	
 
 } ]);
+
+angular.module('com.pupil.app').directive('pRegisterform', function () {
+  return {
+    restrict: 'EA',
+    scope: {},
+    templateUrl: 'components/registerform.html',
+    controller: 'RegisterController'
+  };
+});
