@@ -7,8 +7,12 @@
 angular.module('com.pupil.app')
 .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /
-  $urlRouterProvider.when("","/notFound");
-
+//$urlRouterProvider.when("","/notFound");
+  $urlRouterProvider
+	.otherwise(function(inject, location) {
+		var path = location.$$path || "";
+		return '/notFound';
+	})
   $stateProvider
   	.state('home', {
       url: "/",

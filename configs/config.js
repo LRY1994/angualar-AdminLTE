@@ -9,10 +9,10 @@ angular.module('com.pupil.app')
 //	notAuthorized : 'auth-not-authorized'
 })
 .config(['$httpProvider', function($httpProvider){
-	console.log($httpProvider);
-	console.log($httpProvider.interceptors);
+//	console.log($httpProvider);
+//	console.log($httpProvider.interceptors);
 	$httpProvider.interceptors.push('AuthInterceptor');
-	console.log($httpProvider.interceptors);
+//	console.log($httpProvider.interceptors);
 }]);
 /* Adding the auth interceptor here, to check every $http request*/
 //.config(['$httpProvider',function ($httpProvider) {
