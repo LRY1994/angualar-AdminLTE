@@ -100,7 +100,7 @@ gulp.task('distHtml',function(){
 gulp.task('distFont',function(){
 	 console.log('复制font-awesome：');
     return gulp.src(['app/libraries/font-awesome-4.7.0/fonts/*','app/libraries/bootstrap/fonts/*'])
-    .pipe(gulp.dest('./dist/font/'));
+    .pipe(gulp.dest('./dist/fonts/'));
 });
 
 gulp.task('distImg',function(){

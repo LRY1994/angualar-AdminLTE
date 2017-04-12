@@ -14,5 +14,5 @@ https://segmentfault.com/a/1190000005704053
 npm install---安装gulp
 gulp clean ----第一次使用gulp不用这个
 gulp build或者gulp
-把dist/font改成dist/fonts---因为同名fonts复制不了
-把dist/index.html里面的多余文件删掉，改成只有dist里面的css和js-----用了gulp-processhtml,这个不用了
+
+git add -u []: 把中所有tracked文件中被修改过或已删除文件的信息添加到索引库。它不会处理untracted的文件
