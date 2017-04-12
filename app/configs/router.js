@@ -12,7 +12,7 @@ angular.module('com.pupil.app')
 	.otherwise(function(inject, location) {
 		var path = location.$$path || "";
 		return '/notFound';
-	})
+	});
   $stateProvider
   	.state('home', {
       url: "/",

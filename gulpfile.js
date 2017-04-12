@@ -12,33 +12,34 @@ var gulp = require('gulp'),
     minifyCss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    ngAnnotate = require('gulp-ng-annotate');
-    es = require('event-stream');
+    ngAnnotate = require('gulp-ng-annotate'),
+    es = require('event-stream'),
+    processhtml = require('gulp-processhtml');
 
 var cssFiles = [
-	'libraries/bootstrap/css/bootstrap.min.css',
-	'libraries/font-awesome-4.7.0/css/font-awesome.min.css',
-	'libraries/datatables/dataTables.bootstrap.css',
-	'libraries/AdminLTE/css/AdminLTE.min.css',
-	'libraries/AdminLTE/css/skins/_all-skins.min.css',
-	'libraries/iCheck/square/blue.css'//这个显示不出来
+	'app/libraries/bootstrap/css/bootstrap.min.css',
+	'app/libraries/font-awesome-4.7.0/css/font-awesome.min.css',
+	'app/libraries/datatables/dataTables.bootstrap.css',
+	'app/libraries/AdminLTE/css/AdminLTE.min.css',
+	'app/libraries/AdminLTE/css/skins/_all-skins.min.css',
+	'app/libraries/iCheck/square/blue.css'//这个显示不出来
 ];
 var ngScripts = [
-	'index.js',	
-	'configs/**/*.js',
-	'services/**/*.js',	
-	'components/**/*.js'		
+	'app/index.js',	
+	'app/configs/**/*.js',
+	'app/services/**/*.js',	
+	'app/components/**/*.js'		
 		
 ];
 var libScripts = [
-	'libraries/jQuery/jquery-2.2.3.min.js',
-	'libraries/bootstrap/js/bootstrap.min.js',
-	'libraries/AdminLTE/js/app.min.js',
-	'libraries/iCheck/icheck.min.js',
-	'libraries/datatables/jquery.dataTables.min.js',
-	'libraries/datatables/dataTables.bootstrap.min.js',
-	'libraries/angular/angular.min.js',
-	'libraries/angular/angular-ui-router.js'
+	'app/libraries/jQuery/jquery-2.2.3.min.js',
+	'app/libraries/bootstrap/js/bootstrap.min.js',
+	'app/libraries/AdminLTE/js/app.min.js',
+	'app/libraries/iCheck/icheck.min.js',
+	'app/libraries/datatables/jquery.dataTables.min.js',
+	'app/libraries/datatables/dataTables.bootstrap.min.js',
+	'app/libraries/angular/angular.min.js',
+	'app/libraries/angular/angular-ui-router.js'
 ];
 
 
@@ -66,13 +67,11 @@ gulp.task('minifyLibScripts',function(){
     
 gulp.task('minifyNgScripts',function(){
 	console.log("把HTML模板合并成一个文件");
-	var ctpl = gulp.src(['./components/*.html'])
-// 			  .pipe(templateCache());
+	var ctpl = gulp.src(['app/components/*.html']) 			  
  			  .pipe(templateCache({                
                  root: 'components'
             }));
-    var ptpl = gulp.src(['./pages/*.html'])
-// 			  .pipe(templateCache());
+    var ptpl = gulp.src(['app/pages/*.html'])			  
  			  .pipe(templateCache({                
                  root: 'pages'
             }));
@@ -93,21 +92,24 @@ gulp.task('minifyCss',function(){
 
 gulp.task('distHtml',function(){
 	 console.log('复制index.html：');
-    return gulp.src("index.html")
-    .pipe(gulp.dest('dist/'))
+    return gulp.src("app/index.html")
+               .pipe(processhtml())
+   			   .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('distFont',function(){
 	 console.log('复制font-awesome：');
-    return gulp.src(['libraries/font-awesome-4.7.0/fonts/*','libraries/bootstrap/fonts/*'])
-    .pipe(gulp.dest('dist/font/'));
+    return gulp.src(['app/libraries/font-awesome-4.7.0/fonts/*','app/libraries/bootstrap/fonts/*'])
+    .pipe(gulp.dest('./dist/font/'));
 });
 
 gulp.task('distImg',function(){
 	 console.log('复制img：');
-    return gulp.src(['images/avatar2.png','images/user2-160x160.jpg'])
-    .pipe(gulp.dest('dist/images/'));
+    return gulp.src(['app/images/avatar2.png','app/images/user2-160x160.jpg'])
+    .pipe(gulp.dest('./dist/images/'));
 });
+
+
 /**
  * 构建
  * 指令:gulp build

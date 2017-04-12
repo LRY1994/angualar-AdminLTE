@@ -1,4 +1,4 @@
-# angualar+AdminLTE
+# angualar+AdminLTE+gulp
 毕业设计，第一次用angular构建项目
 
 gulp构建参考博客
@@ -15,4 +15,4 @@ npm install---安装gulp
 gulp clean ----第一次使用gulp不用这个
 gulp build或者gulp
 把dist/font改成dist/fonts---因为同名fonts复制不了
-把dist/index.html里面的多余文件删掉，改成只有dist里面的css和js
+把dist/index.html里面的多余文件删掉，改成只有dist里面的css和js-----用了gulp-processhtml,这个不用了

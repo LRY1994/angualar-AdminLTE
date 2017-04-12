@@ -36,6 +36,7 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS) {
 		if(users[user.username]){
 			var loginData = users[user.username];
 			//insert your custom login function here 
+			debugger
 			if(user.username == loginData.username && user.password == loginData.username){
 				//set the browser session, to avoid relogin on refresh
 				$window.sessionStorage["userInfo"] = JSON.stringify(loginData);
