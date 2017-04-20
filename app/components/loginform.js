@@ -24,7 +24,7 @@ function($scope, $state, $window, AuthService ) {
 			//success function			
 			$state.go('home');
 		}, function(err) {
-			console.log("error");
+			console.log(err);
 			$scope.error = true;
 		});
 	};

@@ -1,13 +1,13 @@
     <!--描述：登录表单-->
 <form name="loginForm"  ng-submit="submit()" novalidate>
      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="账号" name="username"
+        <input type="text" class="form-control" placeholder="账号" name="accountNumber"
         	ng-model="credentials.username" required>
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <span class="fa fa-user form-control-feedback"></span>
       </div>
       <div class="error"
-		ng-show="(submitted  || loginForm.username.$dirty)  && loginForm.username.$invalid">
-		<p class="error" ng-show="loginForm.username.$error.required">账号不能为空</p>
+		ng-show="(submitted  || loginForm.accountNumber.$dirty)  && loginForm.accountNumber.$invalid">
+		<p class="error" ng-show="loginForm.accountNumber.$error.required">账号不能为空</p>
 		</div>
       <div class="form-group has-feedback">
       	<!--禁止浏览器自动填充到表单-->
@@ -15,7 +15,7 @@
         <input type="password" class="form-control" placeholder="密码" name="password"
         	ng-model="credentials.password" required>
        
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <span class="fa fa-key form-control-feedback"></span>
       </div>
       <div class="error"
 			ng-show="(submitted  || loginForm.password.$dirty)  && loginForm.password.$invalid">

@@ -16,3 +16,6 @@ gulp clean ----第一次使用gulp不用这个
 gulp build或者gulp
 
 git add -u []: 把中所有tracked文件中被修改过或已删除文件的信息添加到索引库。它不会处理untracted的文件
+
+测试端口的基地址为http://ecs.jimstar.top:8080/Wearable_war/，
+数据库管理地址https://ecs.jimstar.top/phpmyadmin 用户名cielo，密码hahaschool。

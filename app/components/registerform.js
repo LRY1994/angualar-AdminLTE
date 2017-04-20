@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('RegisterController', [ '$scope', '$state', function($scope, $state) {
+.controller('RegisterController', [ '$scope', '$state','$http','HOST', function($scope, $state,$http,HOST) {
 	$scope.credentials = {};
 	$scope.registerForm = {};
 	$scope.error = false;
@@ -22,20 +22,32 @@ angular.module('com.pupil.app')
 		$scope.error = false;
 		$http({
 			method: 'POST',
-			url: '/api/users.json',
+			url: HOST+'/User/join',
 			//换成查询字符串追加在URL后面
-			params: {
-				'username': 'auser'
-			},
-			//会被当作消息体发送给服务器的数据。通常在发送POST请求时使用。
-			data : {
-				user :credentials
+			data: {
+				'accountNumber': credentials.accountNumber,
+				'password':credentials.password,
+				'userName':credentials.userName,
+				'phone':credentials.phone,
+				'relativeName':credentials.relativeName,
+				'relativePhone':credentials.relativePhone,
+				'email':credentials.email
+//				'gender':credentials.gender
 			}
 			}).success(function(data,status,headers,config) {
+				if(data.status==0){
+					alert('添加成功');
+					$state.go('login');
+				}else if(data.status==1){
+					alert('用户已存在');
+				}else{
+					alert('添加失败');
+				}
 				// 当相应准备就绪时调用
-				$state.go('login');
+				
 			}).error(function(data,status,headers,config) {
 				// 当响应以错误状态返回时调用
+				
 				console.log("error");
 				$scope.error = true;
 			});		

@@ -8,6 +8,7 @@ angular.module('com.pupil.app')
 	notAuthenticated : 'auth-not-authenticated'
 //	notAuthorized : 'auth-not-authorized'
 })
+.constant('HOST', 'http://ecs.jimstar.top:8080/Wearable_war')
 .config(['$httpProvider', function($httpProvider){
 //	console.log($httpProvider);
 //	console.log($httpProvider.interceptors);

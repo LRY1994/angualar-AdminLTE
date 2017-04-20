@@ -1,41 +1,79 @@
 <!--描述：注册表单-->
+<style>
+	.required{
+		color: red;
+	}
+</style>
 <form name="registerForm"  ng-submit="submit()">
-	  <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="用户名">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+	   <div class="form-group has-feedback">
+	    	<!--账号-->
+      <input type="text" class="form-control" placeholder="账号"
+        	name="accountNumber"
+        	ng-model="credentials.accountNumber" 
+        	required>
+        <span class="fa fa-user form-control-feedback "></span>
+        <span class="required">(必填)</span>
+      </div>
+      <div class="error"
+		       ng-show="(submitted  || registerForm.accountNumber.$dirty)  && registerForm.accountNumber.$invalid">
+		      <p class="error" ng-show="registerForm.accountNumber.$error.required">账号不能为空</p>
+		 </div>
+		<!--账号-->
+		<!--密码-->
+		<div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="密码"
+        	name="password"
+        	ng-model="credentials.password" 
+        	required>
+        <span class="fa fa-key form-control-feedback "></span>
+        <span class="required">(必填)</span>
+      </div>
+      <div class="error"
+		     ng-show="(submitted  || registerForm.password.$dirty)  && registerForm.password.$invalid">
+		    <p class="error" ng-show="registerForm.password.$error.required">账号不能为空</p>
+		</div>
+		<!--密码-->
+		<!--确认密码-->
+    <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="再次确认密码" 
+        	name="repassword"
+        	required>
+        <span class="fa fa-sign-in form-control-feedback "></span>
+        <span class="required">(必填)</span>
+    </div>
+      <!--<div class="error"
+		      ng-show="(submitted  || registerForm.repassword.$dirty)  && (registerForm.password！=registerForm.repassword)">
+		     <p class="error" ng-show="registerForm.repassword.$error.required" >密码不一致</p>
+		 </div>-->
+		<!--确认密码-->
+		
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="姓名" ng-model="credentials.userName">
+        <span class="fa fa-address-card-o form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="姓名">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <input type="radio" name="gender" value="male" ng-model="credentials.gender"/>男
+        <input type="radio" name="gender" value="female" ng-model="credentials.gender"/>女
       </div>
       <div class="form-group has-feedback">
-        <input type="radio" name="sex" value="male"/>男
-        <input type="radio" name="sex" value="female"/>女
+        <input type="tel" class="form-control" placeholder="联系电话"ng-model="credentials.phone">
+        <span class="fa fa-phone form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="number" class="form-control" placeholder="年龄">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <input type="email" class="form-control" placeholder="邮箱地址" ng-model="credentials.email">
+        <span class="fa fa-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="邮箱地址">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <input type="text" class="form-control" placeholder="亲人姓名" ng-model="credentials.relativeName">
+        <span class="fa fa-address-card form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="tel" class="form-control" placeholder="联系电话">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <input type="tel" class="form-control" placeholder="亲人联系电话"ng-model="credentials.relativePhone">
+        <span class="fa fa-phone form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="联系人姓名">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="密码">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="再次确认密码">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
+      
+      
+		
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
