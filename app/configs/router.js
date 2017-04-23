@@ -32,7 +32,29 @@ angular.module('com.pupil.app')
       templateUrl: "pages/register.html"	
 	 
     })
-     
+     .state('userInfo', {
+      url: "/userInfo",
+      templateUrl: "pages/userInfo.html",
+      controller: function($state){
+            $state.go('userInfo.display');//默认显示第一个tab
+        }
+	 
+    })
+     .state('userInfo.basic', {
+      url: "/basic",
+      templateUrl: "components/userinfo/basicedit.html"	
+	 
+    })
+     .state('userInfo.password', {
+      url: "/password",
+      templateUrl: "components/userinfo/passwordedit.html"	
+	 
+    })
+     .state('userInfo.display', {
+      url: "/display",
+      templateUrl: "components/userinfo/infodisplay.html"	
+	 
+    })
     .state('home.page1', {
       url: "data/page1",
       templateUrl: "pages/1.html",

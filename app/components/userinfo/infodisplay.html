@@ -1,0 +1,90 @@
+<!--描述：注册表单-->
+<style>
+	.required{
+		color: red;
+	}
+	.form-control-feedback{
+		right:16px;
+	}
+</style>
+
+     <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">个人中心</h3>
+        </div>
+       
+        <!-- form start -->
+   		 <form class="form-horizontal" name="registerForm"  ng-submit="submit()">
+             <div class="box-body">            	
+                <!--账号-->
+                <div class="form-group">                 	                
+			    	<label for="accountNumber" class="col-sm-2 control-label">账号</label>
+					<div class="col-sm-10">
+      					
+      				</div>
+		 		</div>		 		
+				<!--账号-->
+				
+				
+				<div class="form-group">                 	                
+			    	<label for="userName" class="col-sm-2 control-label">姓名</label>
+					<div class="col-sm-10">
+						
+					</div>
+				</div>
+				
+				<div class="form-group">                 	                
+			    	<label for="gender" class="col-sm-2 control-label">性别</label>
+					<div class="col-sm-10">
+						
+					</div>
+				</div>
+				
+				<div class="form-group">                 	                
+			    	<label for="phone" class="col-sm-2 control-label">联系电话</label>
+					<div class="col-sm-10">
+						
+					</div>
+				</div>
+				
+				<div class="form-group">                 	                
+			    	<label for="email" class="col-sm-2 control-label">邮箱地址</label>
+					<div class="col-sm-10">
+						
+					</div>
+				</div>
+				
+				<div class="form-group">                 	                
+			    	<label for="relativeName" class="col-sm-2 control-label">亲人姓名</label>
+					<div class="col-sm-10">
+						
+					</div>
+				</div>
+				
+				<div class="form-group">                 	                
+			    	<label for="relativePhone" class="col-sm-2 control-label">亲人联系电话</label>
+					<div class="col-sm-10">
+						
+					</div>
+				</div>
+               
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <a ui-sref="home" class="text-center">返回首页</a>
+                
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+
+<script>
+	$(function() {
+	$('input').iCheck( {
+		checkboxClass: 'icheckbox_square-blue', radioClass: 'iradio_square-blue', increaseArea: '20%' // optional
+	}
+	);
+}
+
+);</script>
