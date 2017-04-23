@@ -1,10 +1,18 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('RegisterController', [ '$scope', '$state','$http','HOST', function($scope, $state,$http,HOST) {
+.controller('RegisterController', [ '$scope', '$state','$http','$timeout','HOST', 
+function($scope, $state,$http,$timeout,HOST) {
 	$scope.credentials = {};
 	$scope.registerForm = {};
 	$scope.error = false;
+	var timer=null;
+	
+	$scope.registerState = {
+		userExist:false,
+		regFail:false,
+		regSuccess:false
+	}
 	
 	//when the form is submitted
 	$scope.submit = function() {
@@ -36,12 +44,24 @@ angular.module('com.pupil.app')
 			}
 			}).success(function(data,status,headers,config) {
 				if(data.status==0){
-					alert('添加成功');
-					$state.go('login');
+					//alert('添加成功');
+					$scope.registerState.regFail=false;
+					$scope.registerState.userExist=false;
+					$scope.registerState.regSuccess=true;
+					timer=$timeout(function(){
+						$state.go('login');
+						},3000);
 				}else if(data.status==1){
-					alert('用户已存在');
+					$scope.registerState.regSuccess=false;
+					$scope.registerState.regFail=false;
+					$scope.registerState.userExist=true;
+					
+					//alert('用户已存在');
 				}else{
-					alert('添加失败');
+					$scope.registerState.regSuccess=false;
+					$scope.registerState.userExist=false;
+					$scope.registerState.regFail=true;
+					//alert('添加失败');
 				}
 				// 当相应准备就绪时调用
 				
@@ -53,6 +73,10 @@ angular.module('com.pupil.app')
 			});		
 	};
 	
+	$scope.$on("$destroy",function( event ) {
+                $timeout.cancel( timer );
+	});
+                   
 
 } ]);
 

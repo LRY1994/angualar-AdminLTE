@@ -4,6 +4,15 @@
 		color: red;
 	}
 </style>
+<div class="alert alert-warning alert-dismissible" role="alert" ng-show="registerState.userExist">
+  <strong>注意!</strong> 账号已存在.
+</div>
+<div class="alert alert-warning alert-dismissible" role="alert" ng-show="registerState.regFail">
+  <strong>注意!</strong> 注册失败，请重试.
+</div>
+<div class="alert alert-success" role="alert" ng-show="registerState.regSuccess">
+  <a ui-sref="login" class="alert-link">注册成功，3秒后跳转到登陆页面</a>
+</div>
 <form name="registerForm"  ng-submit="submit()">
 	   <div class="form-group has-feedback">
 	    	<!--账号-->
