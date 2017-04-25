@@ -10,7 +10,7 @@ angular.module('com.pupil.app').directive('pHeader', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/header.html',
+    templateUrl: 'components/parts/header.html',
     controller: 'HeaderController'
   };
 });

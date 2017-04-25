@@ -7,7 +7,7 @@ angular.module('com.pupil.app').directive('pBreadCrumb', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/breadcrumb.html',
+    templateUrl: 'components/parts/breadcrumb.html',
     controller: 'BreadcrumbController'
   };
 });

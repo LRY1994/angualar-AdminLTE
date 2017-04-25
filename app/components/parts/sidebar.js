@@ -7,7 +7,7 @@ angular.module('com.pupil.app').directive('pSidebar', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/sidebar.html',
+    templateUrl: 'components/parts/sidebar.html',
     controller: 'SidebarController'
   };
 });
