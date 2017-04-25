@@ -1,11 +1,11 @@
 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>commitTime</th>
-                  <th>device</th>
-                  <th>step</th>
-                  <th>distance</th>
-                  <th>id</th>
+                  <th>时间</th>
+                  <th>设备MAC地址</th>
+                  <th>步数</th>
+                  <th>行走距离(m)</th>
+                  <th>心率(/分钟)</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -13,8 +13,8 @@
                   <td>{{item.commitTime}}</td>
                   <td>{{item.device}}</td>
                   <td>{{item.step}}</td>
-                  <td> {{item.heart}}</td>
-                  <td>{{item.id}}</td>
+                  <td> {{item.distance}}</td>
+                  <td>{{item.heart}}</td>
                 </tr>                
                 </tbody>
                 <tfoot>
@@ -23,7 +23,21 @@
                   <th>device</th>
                   <th>step</th>
                   <th>distance</th>
-                  <th>id</th>
+                  <th>heart</th>
                 </tr>
                 </tfoot>
               </table>
+              
+<script>
+  $(function () {
+   
+    $('#example1').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": false,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>     

@@ -18,6 +18,8 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 		}).success(function(data,status,headers,config){
 			if(data.status==0){
 				delete data.status;
+				data.passwordEncoded=data.password;
+				delete data.password;
 				$window.sessionStorage["userInfo"] = JSON.stringify(data);
 //				
 				Session.create(data);

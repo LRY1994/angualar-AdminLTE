@@ -6,19 +6,16 @@ function ($scope,$http,HOST,$window) {
 	
 	$scope.getInfo = function() {	
 		 var userInfo = $window.sessionStorage["userInfo"];
-		 console.log(userInfo);
+		 //console.log(userInfo);
 		$http({
 			method: 'POST',
 			url: HOST+'/User/display',			
-			data: {
-				accountNumber : userInfo.accountNumber,
-				passwordEncoded : userInfo.password
-			}
+			data: userInfo
 			}).success(function(data,status,headers,config) {
-				console.log(data);
+				//console.log(data);
 				if(data.status==0){					
 					$scope.user=data.user;	
-					console.log(data);
+					//console.log(data);
 				}else if(data.status==1){
 					console.log("读取失败");
 				}else if(data.status==3){

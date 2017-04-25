@@ -14,20 +14,20 @@
             <h3 class="box-title">修改基本信息</h3>
         </div>
        <!-- /.box-header -->        
-		<div class="alert alert-warning alert-dismissible" role="alert" ng-show="registerState.regFail">
+		<div class="alert alert-warning alert-dismissible" role="alert" ng-show="editState.editFail">
   			<strong>注意!</strong> 修改失败.
 		</div>
-		<div class="alert alert-success" role="alert" ng-show="registerState.regSuccess">
-  			<a ui-sref="login" class="alert-link">修改成功，3秒后跳转到登陆页面</a>
+		<div class="alert alert-success alert-dismissible" role="alert" ng-show="editState.editSuccess">
+  			修改成功
 		</div>
         <!-- form start -->
-   		 <form class="form-horizontal" name="registerForm"  ng-submit="submit()">
+   		 <form class="form-horizontal" name="editForm"  ng-submit="save()">
              <div class="box-body">            	
                 <!--账号-->
                 <div class="form-group">                 	                
 			    	<label for="accountNumber" class="col-sm-2 control-label">账号</label>
 					<div class="col-sm-9">
-      					<input type="text" class="form-control" placeholder="账号" disabled="disabled">
+      					<input type="text" class="form-control" placeholder="账号" disabled="disabled" ng-model="user.accountNumber">
       				</div>
 		 		</div>		 		
 				<!--账号-->
@@ -36,7 +36,7 @@
 				<div class="form-group">                 	                
 			    	<label for="userName" class="col-sm-2 control-label">姓名</label>
 					<div class="col-sm-9">
-						<input type="text" class="form-control" name="userName"placeholder="姓名" ng-model="credentials.userName">
+						<input type="text" class="form-control" name="userName"placeholder="姓名" ng-model="user.userName">
                         <span class="fa fa-address-card-o form-control-feedback"></span>
 					</div>
 				</div>
@@ -44,15 +44,15 @@
 				<div class="form-group">                 	                
 			    	<label for="gender" class="col-sm-2 control-label">性别</label>
 					<div class="col-sm-9">
-						<input type="radio" name="gender" value="male" ng-model="credentials.gender"/>男
-       					<input type="radio" name="gender" value="female" ng-model="credentials.gender"/>女
+						<input type="radio" name="gender" value="male" ng-model="user.gender"/>男
+       					<input type="radio" name="gender" value="female" ng-model="user.gender"/>女
 					</div>
 				</div>
 				
 				<div class="form-group">                 	                
 			    	<label for="phone" class="col-sm-2 control-label">联系电话</label>
 					<div class="col-sm-9">
-						<input type="tel" name="phone"class="form-control" placeholder="联系电话"ng-model="credentials.phone">
+						<input type="tel" name="phone"class="form-control" placeholder="联系电话"ng-model="user.phone">
         				<span class="fa fa-phone form-control-feedback"></span>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 				<div class="form-group">                 	                
 			    	<label for="email" class="col-sm-2 control-label">邮箱地址</label>
 					<div class="col-sm-9">
-						<input type="email"  name="email" class="form-control" placeholder="邮箱地址" ng-model="credentials.email">
+						<input type="email"  name="email" class="form-control" placeholder="邮箱地址" ng-model="user.email">
         				<span class="fa fa-envelope form-control-feedback"></span>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 				<div class="form-group">                 	                
 			    	<label for="relativeName" class="col-sm-2 control-label">亲人姓名</label>
 					<div class="col-sm-9">
-						<input type="text" name="relativeName"class="form-control" placeholder="亲人姓名" ng-model="credentials.relativeName">
+						<input type="text" name="relativeName"class="form-control" placeholder="亲人姓名" ng-model="user.relativeName">
         				<span class="fa fa-address-card form-control-feedback"></span>
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 				<div class="form-group">                 	                
 			    	<label for="relativePhone" class="col-sm-2 control-label">亲人联系电话</label>
 					<div class="col-sm-9">
-						<input type="tel" name="relativePhone"class="form-control" placeholder="亲人联系电话"ng-model="credentials.relativePhone">
+						<input type="tel" name="relativePhone"class="form-control" placeholder="亲人联系电话"ng-model="user.relativePhone">
         				<span class="fa fa-phone form-control-feedback"></span>
 					</div>
 				</div>
@@ -85,7 +85,7 @@
               <!-- /.box-body -->
               <div class="box-footer">
                 <a ui-sref="home" class="text-center">返回首页</a>
-                <button type="submit" class="btn btn-primary pull-right"ng-disabled="registerForm.$invalid">保存</button>
+                <button type="submit" class="btn btn-primary pull-right" ng-disabled="editForm.$invalid||!editForm.$dirty">保存</button>
               </div>
               <!-- /.box-footer -->
             </form>
