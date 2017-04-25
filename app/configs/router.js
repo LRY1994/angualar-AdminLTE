@@ -7,12 +7,12 @@
 angular.module('com.pupil.app')
 .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /
-//$urlRouterProvider.when("","/notFound");
-  $urlRouterProvider
-	.otherwise(function(inject, location) {
-		var path = location.$$path || "";
-		return '/notFound';
-	});
+$urlRouterProvider.when("","/login");
+//$urlRouterProvider
+//	.otherwise(function(inject, location) {
+//		var path = location.$$path || "";
+//		return '/notFound';
+//	});
   $stateProvider
   	.state('home', {
       url: "/",
@@ -55,9 +55,9 @@ angular.module('com.pupil.app')
       templateUrl: "pages/userInfoDisplay.html"	
 	 
     })
-    .state('home.page1', {
-      url: "data/page1",
-      templateUrl: "pages/1.html",
+    .state('home.measuredata', {
+      url: "data/measuredata",
+      templateUrl: "pages/measureData.html",
     	 
     })
     .state('home.page2', {

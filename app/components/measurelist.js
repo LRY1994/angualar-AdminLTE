@@ -1,15 +1,14 @@
 'use strict';
 
-angular.module('com.pupil.app')
-.controller('InfodisplayController',['$scope','$http','HOST','$window',
+angular.module('com.pupil.app').
+controller('MeasurelistController', ['$scope','$http','HOST','$window',
 function ($scope,$http,HOST,$window) {
-	
-	$scope.getInfo = function() {	
-		 var userInfo = $window.sessionStorage["userInfo"];
-		 console.log(userInfo);
-		$http({
+  $scope.getData = function(){
+  	 var userInfo = $window.sessionStorage["userInfo"];
+  	 console.log(userInfo);
+  	$http({
 			method: 'POST',
-			url: HOST+'/User/display',			
+			url: HOST+'/Measure/getAll',			
 			data: {
 				accountNumber : userInfo.accountNumber,
 				passwordEncoded : userInfo.password
@@ -17,7 +16,7 @@ function ($scope,$http,HOST,$window) {
 			}).success(function(data,status,headers,config) {
 				console.log(data);
 				if(data.status==0){					
-					$scope.user=data.user;	
+					$scope.lists=data.measures;	
 					console.log(data);
 				}else if(data.status==1){
 					console.log("读取失败");
@@ -27,20 +26,14 @@ function ($scope,$http,HOST,$window) {
 			}).error(function(data,status,headers,config) {							
 				console.log("error");				
 			});		
-	};
-	
-	
-    $scope.getInfo();
-    
-   }
-]);
-    
-
-angular.module('com.pupil.app').directive('pInfodisplay', function () {
+  };
+  $scope.getData();
+}]);
+angular.module('com.pupil.app').directive('pMeasurelist', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/userinfo/infodisplay.html',
-    controller: 'InfodisplayController'
+    templateUrl: 'components/measurelist.html',
+    controller: 'MeasurelistController'
   };
 });

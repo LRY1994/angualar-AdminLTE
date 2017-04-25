@@ -1,0 +1,29 @@
+<table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>commitTime</th>
+                  <th>device</th>
+                  <th>step</th>
+                  <th>distance</th>
+                  <th>id</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in lists">
+                  <td>{{item.commitTime}}</td>
+                  <td>{{item.device}}</td>
+                  <td>{{item.step}}</td>
+                  <td> {{item.heart}}</td>
+                  <td>{{item.id}}</td>
+                </tr>                
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>commitTime</th>
+                  <th>device</th>
+                  <th>step</th>
+                  <th>distance</th>
+                  <th>id</th>
+                </tr>
+                </tfoot>
+              </table>

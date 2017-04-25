@@ -4,10 +4,14 @@ angular.module('com.pupil.app')
 .controller('PasswordeditController', ['$scope','$http','HOST','$window',
 function ($scope,$http,HOST,$window) {
 	$scope.save = function(){
+		 var userInfo = $window.sessionStorage["userInfo"];
 		$http({
 			method:'POST',
+			url :HOST+'/User/edit',
 			data:{
-				
+				accountNumber : userInfo.accountNumber,
+				passwordEncoded : userInfo.password,
+				newPassword
 			}
 		}).success(function(data,status,headers,config) {
 				if(data.status==0){					
