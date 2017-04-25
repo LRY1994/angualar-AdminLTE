@@ -17,7 +17,7 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 			})
 		}).success(function(data,status,headers,config){
 			if(data.status==0){
-//				delete data.password
+				delete data.status;
 				$window.sessionStorage["userInfo"] = JSON.stringify(data);
 //				
 				Session.create(data);

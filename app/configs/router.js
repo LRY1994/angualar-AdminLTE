@@ -42,17 +42,17 @@ angular.module('com.pupil.app')
     })
      .state('userInfo.basic', {
       url: "/basic",
-      templateUrl: "components/userinfo/basicedit.html"	
+      templateUrl: "pages/userInfoBasicEdit.html"	
 	 
     })
      .state('userInfo.password', {
       url: "/password",
-      templateUrl: "components/userinfo/passwordedit.html"	
+      templateUrl: "pages/userInfoPswEdit.html"	
 	 
     })
      .state('userInfo.display', {
       url: "/display",
-      templateUrl: "components/userinfo/infodisplay.html"	
+      templateUrl: "pages/userInfoDisplay.html"	
 	 
     })
     .state('home.page1', {
