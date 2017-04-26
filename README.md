@@ -1,4 +1,4 @@
-# angualar+AdminLTE+gulp
+# Angular+AdminLTE+Gulp
 毕业设计，第一次用angular构建项目
 
 ## gulp构建参考博客
@@ -11,9 +11,9 @@
 
 
 ## 安装使用步骤
-- npm install---安装gulp
-- gulp clean ----第一次使用gulp不用这个
-- gulp build或者gulp
+- npm install---根据gulpfile.js安装gulp
+- gulp clean ----清除dist目录下内容，第一次使用gulp不用这个
+- gulp build或者gulp---完成之后会把所有代码压缩 到dist文件夹中
 
 git add -u []: 把中所有tracked文件中被修改过或已删除文件的信息添加到索引库。它不会处理untracted的文件
 
