@@ -5,7 +5,7 @@
 - http://www.cnblogs.com/caohenghu/p/5174024.html
 - http://www.open-open.com/lib/view/open1448188754393.html
 - http://www.tuicool.com/articles/UvAz2iN
-- http://www.cnblogs.com/2050/p/4198792.html
+- http://www.cnblogs.com/2050/p/4198792.html  模式
 - http://www.gulpjs.com.cn/docs/api/
 - https://segmentfault.com/a/1190000005704053
 

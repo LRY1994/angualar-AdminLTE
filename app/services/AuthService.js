@@ -10,7 +10,6 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 	AuthService.login = function(user, success, error) {
 		$http({
 			method:'POST',
-//			url : HOST+'/User/login',
 			url : HOST+'/api/token',
 			data:{
 				'accountNumber':user.username,

@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('com.pupil.app').controller('HeaderController', ['$scope','$state','$rootScope',function ($scope,$state,$rootScope) {
+angular.module('com.pupil.app').controller('HeaderController', ['$scope','$state','$rootScope',
+function ($scope,$state,$rootScope) {
   $scope.logout = function(){  
   	$rootScope.logout();
   	$state.go("login");

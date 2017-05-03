@@ -22,7 +22,8 @@ var cssFiles = [
 	'app/libraries/datatables/dataTables.bootstrap.css',
 	'app/libraries/AdminLTE/css/AdminLTE.min.css',
 	'app/libraries/AdminLTE/css/skins/_all-skins.min.css',
-	'app/libraries/iCheck/square/blue.css'//这个显示不出来
+	'app/libraries/iCheck/square/blue.css',
+	'applibraries/datepicker/bootstrap-datepicker.min.css'
 ];
 var ngScripts = [
 	'app/index.js',	
@@ -38,6 +39,7 @@ var libScripts = [
 	'app/libraries/iCheck/icheck.min.js',
 	'app/libraries/datatables/jquery.dataTables.min.js',
 	'app/libraries/datatables/dataTables.bootstrap.min.js',
+	'app/ibraries/datepicker/bootstrap-datepicker.min.js',
 	'app/libraries/angular/angular.min.js',
 	'app/libraries/angular/angular-ui-router.js'
 ];
@@ -60,14 +62,21 @@ gulp.task('minifyLibScripts',function(){
 	console.log('压缩libScripts：');
 	return gulp.src(libScripts)
 				.pipe(ngAnnotate())
-//				.pipe(uglify())
     			.pipe(concat('lib.min.js')) 
     			.pipe(gulp.dest('./dist/js'))
     });
     
 gulp.task('minifyNgScripts',function(){
 	console.log("把HTML模板合并成一个文件");
-	var ctpl = gulp.src(['app/components/*.html']) 			  
+	var cptpl = gulp.src(['app/components/parts/*.html']) 			  
+ 			  .pipe(templateCache({                
+                 root: 'components/parts'
+            }));
+    var cutpl = gulp.src(['app/components/userinfo/*.html']) 			  
+ 			  .pipe(templateCache({                
+                 root: 'components/userinfo'
+            }));
+    var ctpl = gulp.src(['app/components/*.html']) 			  
  			  .pipe(templateCache({                
                  root: 'components'
             }));
@@ -76,7 +85,7 @@ gulp.task('minifyNgScripts',function(){
                  root: 'pages'
             }));
  	console.log('压缩ngScripts：');
-    return es.merge(es.merge(gulp.src(ngScripts),ctpl,ptpl)
+    return es.merge(es.merge(gulp.src(ngScripts),cptpl,cutpl,ctpl,ptpl)
     		  .pipe(ngAnnotate())
     		  .pipe(concat('ng.min.js'))  
     		  .pipe(gulp.dest('./dist/js')));

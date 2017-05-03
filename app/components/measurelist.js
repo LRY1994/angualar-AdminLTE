@@ -3,10 +3,12 @@
 angular.module('com.pupil.app').
 controller('MeasurelistController', ['$scope','$http','HOST','$window',
 function ($scope,$http,HOST,$window) {
-	
+//	startDate = new Date(new Date().toLocaleDateString()).getTime();
+//  endDate = new Date().getTime();
   var token = $window.sessionStorage["token"].replace(/\"/g,'');
-	$scope.fromTime='';
-	$scope.toTime='';
+	
+	$scope.fromTime="";
+	$scope.toTime="";
 	//格式化时间
   $scope.formatTime = function(time) {
 	var timeStamp = new Date(parseInt(time)),
@@ -20,23 +22,38 @@ function ($scope,$http,HOST,$window) {
 };
 	
   $scope.getData = function(){
-  	console.log($scope.fromTime);
-  	console.log($scope.toTime);
+  
+  	var fromTime,toTime;
+  	if($scope.fromTime==""){
+  		fromTime="";
+  	}else {
+  		fromTime=new Date($scope.fromTime).getTime();
+  	}
+  	if($scope.toTime==""){
+  		toTime="";
+  	}else{//1天(d)=86400000毫秒(ms)
+  		toTime=new Date($scope.toTime).getTime()+86400000;
+  	}
+  	 	
   	$http({
-		method: 'POST',
+		method: 'GET',
 		url: HOST+'/api/'+token+'/data',			
-		data:{
-			fromTime:$scope.fromTime,
-			toTime:$scope.toTime
+		params:{
+			fromTimeMills:fromTime,
+			toTimeMills:toTime
 		}
-		}).success(function(data,status,headers,config) {								
+		}).success(function(data,status,headers,config) {
+			console.log(data);
 			var lists=data.measures;	
 			angular.forEach(lists,function(data, index, array){                  		
 				data.commitTime= $scope.formatTime(data.commitTime);						
 			});
 			$scope.lists=lists;
 			
-			}).error(function(data,status,headers,config) {							
+			}).error(function(data,status,headers,config) {
+				if(status==404){
+					$scope.lists=[];
+				}
 				console.log("error");				
 			});		
   };
