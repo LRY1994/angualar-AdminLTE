@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('RegisterController', [ '$scope', '$state','$http','$timeout','HOST', 
-function($scope, $state,$http,$timeout,HOST) {
+.controller('RegisterController', [ '$scope', '$state','$http','$timeout','HOST', '$window',
+function($scope, $state,$http,$timeout,HOST,$window) {
 	$scope.credentials = {};
 	$scope.registerForm = {};
 	$scope.error = false;
@@ -30,7 +30,8 @@ function($scope, $state,$http,$timeout,HOST) {
 		$scope.error = false;
 		$http({
 			method: 'POST',
-			url: HOST+'/User/join',
+//			url: HOST+'/User/join',
+			url: HOST+'/api/user',
 			//换成查询字符串追加在URL后面
 			data: {
 				'accountNumber': credentials.accountNumber,
@@ -43,42 +44,39 @@ function($scope, $state,$http,$timeout,HOST) {
 //				'gender':credentials.gender
 			}
 			}).success(function(data,status,headers,config) {
-				if(data.status==0){
-					//alert('添加成功');
-					$scope.registerState.regFail=false;
-					$scope.registerState.userExist=false;
-					$scope.registerState.regSuccess=true;
-					timer=$timeout(function(){
+				
+				$window.sessionStorage["token"] = data.token.replace(/\"/g,'');
+				//alert('添加成功');
+				$scope.registerState.regFail=false;
+				$scope.registerState.userExist=false;
+				$scope.registerState.regSuccess=true;
+				timer=$timeout(function(){
 						$state.go('login');
-						},3000);
-				}else if(data.status==1){
-					$scope.registerState.regSuccess=false;
-					$scope.registerState.regFail=false;
-					$scope.registerState.userExist=true;
-					
-					//alert('用户已存在');
-				}else{
-					$scope.registerState.regSuccess=false;
-					$scope.registerState.userExist=false;
-					$scope.registerState.regFail=true;
-					//alert('添加失败');
-				}
-				// 当相应准备就绪时调用
+					},3000);
+				
 				
 			}).error(function(data,status,headers,config) {
 				// 当响应以错误状态返回时调用
-				
-				console.log("error");
-				$scope.error = true;
+				if(status==409){//alert('用户已存在');
+					$scope.registerState.regSuccess=false;
+					$scope.registerState.regFail=false;
+					$scope.registerState.userExist=true;
+			    }else{
+				    $scope.registerState.regSuccess=false;
+					$scope.registerState.userExist=false;
+					$scope.registerState.regFail=true;
+					console.log("error");
+					$scope.error = true;
+					}
 			});		
-	};
+		};	
 	
 	$scope.$on("$destroy",function( event ) {
                 $timeout.cancel( timer );
 	});
                    
 
-} ]);
+ }]);
 
 angular.module('com.pupil.app').directive('pRegisterform', function () {
   return {

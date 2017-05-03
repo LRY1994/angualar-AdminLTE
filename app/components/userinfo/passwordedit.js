@@ -1,38 +1,34 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('PasswordeditController', ['$scope','$http','HOST','$window','$timeout',
-function ($scope,$http,HOST,$window,$timeout) {
+.controller('PasswordeditController', ['$scope','$http','HOST','$window','$timeout','$state',
+function ($scope,$http,HOST,$window,$timeout,$state) {
+	var token = $window.sessionStorage["token"].replace(/\"/g,'');
 	$scope.editState = {
 		editSuccess : false,
 		editFail : false
 	};
 	var timer=null;
 	$scope.save = function(){
-		 var userInfo = $window.sessionStorage["userInfo"];
+		 
 		$http({
-			method:'POST',
-			url :HOST+'/User/edit',
-			data:{
-				"accountNumber" : userInfo.accountNumber,
-				"passwordEncoded" : userInfo.passwordEncoded,
+			method:'PUT',
+			url :HOST+'/api/'+token,
+			data:{				
 				"newPassword" : $scope.user.newPassword
 			}
 		}).success(function(data,status,headers,config) {
-				if(data.status==0){				
-					$scope.editState.editFail = false;
-					$scope.editState.editSuccess = true;
+								
+			$scope.editState.editFail = false;
+			$scope.editState.editSuccess = true;
 					
-					timer=$timeout(function(){
-						$state.go('login');
-						},3000);
-					//console.log(data);
-				}else {
-					$scope.editState.editSuccess = false;
-					$scope.editState.editFail = true;
-					//console.log("验证错误");
-				}								
-			}).error(function(data,status,headers,config) {							
+			 timer=$timeout(function(){
+					$state.go('login');
+				},3000);
+											
+			}).error(function(data,status,headers,config) {
+				$scope.editState.editSuccess = false;
+				$scope.editState.editFail = true;
 				console.log("error");				
 			});	
 	};

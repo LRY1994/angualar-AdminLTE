@@ -14,10 +14,10 @@
             <h3 class="box-title">修改基本信息</h3>
         </div>
        <!-- /.box-header -->        
-		<div class="alert alert-warning alert-dismissible" role="alert" ng-show="editState.editFail">
+		<div class="alert alert-warning alert-dismissible" role="alert" ng-if="editState.editFail">
   			<strong>注意!</strong> 修改失败.
 		</div>
-		<div class="alert alert-success alert-dismissible" role="alert" ng-show="editState.editSuccess">
+		<div class="alert alert-success alert-dismissible" role="alert" ng-if="editState.editSuccess">
   			修改成功
 		</div>
         <!-- form start -->

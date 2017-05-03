@@ -5,22 +5,16 @@ angular.module('com.pupil.app')
 function ($scope,$http,HOST,$window) {
 	
 	$scope.getInfo = function() {	
-		 var userInfo = $window.sessionStorage["userInfo"];
-		 //console.log(userInfo);
+		 var token = $window.sessionStorage["token"].replace(/\"/g,'');
+		 console.log(token);
+		 console.log(HOST+'/api/'+token);
 		$http({
-			method: 'POST',
-			url: HOST+'/User/display',			
-			data: userInfo
+			method: 'GET',
+			url: HOST+'/api/'+token,						
 			}).success(function(data,status,headers,config) {
-				//console.log(data);
-				if(data.status==0){					
-					$scope.user=data.user;	
-					//console.log(data);
-				}else if(data.status==1){
-					console.log("读取失败");
-				}else if(data.status==3){
-					console.log("验证失败");
-				}
+				//console.log(data);									
+				$scope.user=data.user;	
+					
 			}).error(function(data,status,headers,config) {							
 				console.log("error");				
 			});		

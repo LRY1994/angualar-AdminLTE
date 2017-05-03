@@ -3,8 +3,12 @@
 angular.module('com.pupil.app').
 controller('MeasurelistController', ['$scope','$http','HOST','$window',
 function ($scope,$http,HOST,$window) {
+	
+  var token = $window.sessionStorage["token"].replace(/\"/g,'');
+	$scope.fromTime='';
+	$scope.toTime='';
 	//格式化时间
- $scope.formatTime = function(time) {
+  $scope.formatTime = function(time) {
 	var timeStamp = new Date(parseInt(time)),
 		year = timeStamp.getFullYear(),
 		month = timeStamp.getMonth() + 1,
@@ -16,34 +20,32 @@ function ($scope,$http,HOST,$window) {
 };
 	
   $scope.getData = function(){
-  	 var userInfo = $window.sessionStorage["userInfo"];
-  	 console.log(userInfo);
+  	console.log($scope.fromTime);
+  	console.log($scope.toTime);
   	$http({
-			method: 'POST',
-			url: HOST+'/Measure/getAll',			
-			data: userInfo
-			}).success(function(data,status,headers,config) {
-				//console.log(data);
-				if(data.status==0){					
-					var lists=data.measures;	
-					angular.forEach(lists,function(data, index, array){                  		
-						data.commitTime= $scope.formatTime(data.commitTime);
-						
-					});
-					$scope.lists=lists;
-					
-					
-					//console.log(data);
-				}else if(data.status==1){
-					console.log("读取失败");
-				}else if(data.status==3){
-					console.log("验证失败");
-				}
+		method: 'POST',
+		url: HOST+'/api/'+token+'/data',			
+		data:{
+			fromTime:$scope.fromTime,
+			toTime:$scope.toTime
+		}
+		}).success(function(data,status,headers,config) {								
+			var lists=data.measures;	
+			angular.forEach(lists,function(data, index, array){                  		
+				data.commitTime= $scope.formatTime(data.commitTime);						
+			});
+			$scope.lists=lists;
+			
 			}).error(function(data,status,headers,config) {							
 				console.log("error");				
 			});		
   };
   
+  $scope.query = function(){
+  	console.log('aaa');
+  	 $scope.getData();
+  }
+ 
   $scope.getData();
  
 }]);
