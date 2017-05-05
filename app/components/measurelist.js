@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('com.pupil.app').
-controller('MeasurelistController', ['$scope','$http','HOST','$window','$state',
-function ($scope,$http,HOST,$window,$state) {
+controller('MeasurelistController', ['$scope','$http','HOST','$window','$rootScope','AUTH_EVENTS','$state',
+function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS,$state) {
 //	startDate = new Date(new Date().toLocaleDateString()).getTime();
 //  endDate = new Date().getTime();
 	var token = JSON.parse($window.sessionStorage["userInfo"]).token;
@@ -56,7 +56,8 @@ function ($scope,$http,HOST,$window,$state) {
 					$scope.lists=[];
 				}
 				else if(status==401){
-					$state.go("login");
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+                  //$state.go("login");
 				}
 				else{
 					console.log("get data error");

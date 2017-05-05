@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('InfodisplayController',['$scope','$http','HOST','$window','$state',
-function ($scope,$http,HOST,$window,$state) {
+.controller('InfodisplayController',['$scope','$http','HOST','$window','$rootScope','AUTH_EVENTS',
+function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS) {
 	
 	$scope.getInfo = function() {	
 		 var token = JSON.parse($window.sessionStorage["userInfo"]).token;
@@ -14,7 +14,9 @@ function ($scope,$http,HOST,$window,$state) {
 				$scope.user=data.user;	
 					
 			}).error(function(data,status,headers,config) {	
-				if(status==401)$state.go("login");
+				if(status==401){
+				  $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+				 }
 				else {console.log("get info error");}			
 			});		
 	};

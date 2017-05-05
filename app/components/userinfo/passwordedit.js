@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('PasswordeditController', ['$scope','$http','HOST','$window','$timeout','$state',
-function ($scope,$http,HOST,$window,$timeout,$state) {
+.controller('PasswordeditController', ['$scope','$http','HOST','$window','$timeout','$rootScope','AUTH_EVENTS',
+function ($scope,$http,HOST,$window,$timeout,$rootScope,AUTH_EVENTS) {
 	var token = JSON.parse($window.sessionStorage["userInfo"]).token;
 	
 	
@@ -29,7 +29,9 @@ function ($scope,$http,HOST,$window,$timeout,$state) {
 				},3000);
 											
 			}).error(function(data,status,headers,config) {
-				if(status==401)$state.go("login");
+				if(status==401){
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+				}
 				else{
 					$scope.editState.editSuccess = false;
 					$scope.editState.editFail = true;

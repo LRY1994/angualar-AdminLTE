@@ -1,4 +1,6 @@
-
+/*
+ * index.js
+ */
 'use strict';
 
 // 这里只创建模块，不要写逻辑，所依赖的模块可以根据需要裁减
@@ -15,23 +17,23 @@ angular.module('com.pupil.app', [
  * 总的页面控制器
  */
 angular.module('com.pupil.app').
-controller('HomeIndexController', ['$scope', '$rootScope', 'AuthService', 'AUTH_EVENTS',
-function($scope, $rootScope, AuthService, AUTH_EVENTS){
+controller('HomeIndexController', ['$scope', '$rootScope', 'AuthService', 'AUTH_EVENTS','$state',
+function($scope, $rootScope, AuthService, AUTH_EVENTS,$state){
 	var setCurrentUser = function(){
 		$scope.currentUser = $rootScope.currentUser;
+		
 	}
-	
-	
+		
 	var goToLogin = function(){
    		$state.go("login");
    }
 
 	$scope.currentUser = null;	
 
-	$rootScope.$on(AUTH_EVENTS.notAuthenticated, goToLogin);//未登录
-	$rootScope.$on(AUTH_EVENTS.sessionTimeout, goToLogin);
-	$rootScope.$on(AUTH_EVENTS.logoutSuccess, goToLogin);
-	$rootScope.$on(AUTH_EVENTS.loginSuccess, setCurrentUser);
+	$scope.$on(AUTH_EVENTS.notAuthenticated, goToLogin);
+	$scope.$on(AUTH_EVENTS.sessionTimeout, goToLogin);
+	$scope.$on(AUTH_EVENTS.logoutSuccess, goToLogin);
+	$scope.$on(AUTH_EVENTS.loginSuccess, setCurrentUser);
 
 } ]);
 

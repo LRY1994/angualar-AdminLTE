@@ -1,11 +1,13 @@
+/*
+ * AuthService.js
+ */
 'use strict';
 
 angular.module('com.pupil.app')
 .factory('AuthService', [ '$http', '$rootScope', '$window', 'Session', 'AUTH_EVENTS','HOST', 
 function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 	var AuthService = {};
-	
-	
+		
 	//the login function
 	AuthService.login = function(user, success, error) {
 		$http({
@@ -15,27 +17,19 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 				'accountNumber':user.username,
 				'password':user.password
 			}
-		}).success(function(data,status,headers,config){
-				
-			//set the browser session, to avoid relogin on refresh
-			$window.sessionStorage["userInfo"] = JSON.stringify(data);	
-			
-			
+		}).success(function(data,status,headers,config){							
+			$window.sessionStorage["userInfo"] = JSON.stringify(data);							
 			Session.create(data);
 			$rootScope.currentUser = data;
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);				
 			success(data);
 			
-		}).error(function(data,status,headers,config){
-			
-			
+		}).error(function(data,status,headers,config){					
 			  $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-			  error();
-			
+			  error();			
 		});
 	}
 		
-
 	//check if the user is authenticated
 	AuthService.isAuthenticated = function() {
 		return !!Session.user;

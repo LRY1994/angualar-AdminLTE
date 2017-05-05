@@ -1,3 +1,6 @@
+/*
+ * loginform.js
+ */
 'use strict';
 angular.module('com.pupil.app')
 .controller('LoginController', [ '$scope', '$state', '$window', 'AuthService', 
@@ -6,7 +9,6 @@ function($scope, $state, $window, AuthService ) {
 	$scope.loginForm = {};
 	$scope.error = false;
 	
-	//when the form is submitted
 	$scope.submit = function() {
 		$scope.submitted = true;
 		if (!$scope.loginForm.$invalid) {
@@ -16,12 +18,10 @@ function($scope, $state, $window, AuthService ) {
 			return;
 		}
 	};
-
-	//Performs the login function, by sending a request to the server with the Auth service
+	
 	$scope.login = function(credentials) {
 		$scope.error = false;
-		AuthService.login(credentials, function(user) {
-			//success function			
+		AuthService.login(credentials, function(user) {					
 			$state.go('home');
 		}, function(err) {
 			console.log("login error");

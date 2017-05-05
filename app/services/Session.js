@@ -1,11 +1,8 @@
+/*
+ * Session.js
+ */
 'use strict';
 
-/*
- * In this service the user data is defined for the current session. Within
- * angular current session is until the page is refreshed. When the page is
- * refreshed the user is reinitialized through $window.sessionStorage at the
- * login.js file.
- */
 angular.module('com.pupil.app').service('Session', function($rootScope) {
 
 	this.create = function(user) {
@@ -16,3 +13,9 @@ angular.module('com.pupil.app').service('Session', function($rootScope) {
 	};
 	return this;
 });
+/*
+ * In this service the user data is defined for the current session. Within
+ * angular current session is until the page is refreshed. When the page is
+ * refreshed the user is reinitialized through $window.sessionStorage at the
+ * login.js file.
+ */

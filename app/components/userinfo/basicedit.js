@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('BasiceditController',['$scope','$http','HOST','$window','$state',
-function ($scope,$http,HOST,$window,$state) {
+.controller('BasiceditController',['$scope','$http','HOST','$window','$rootScope','AUTH_EVENTS',
+function ($scope,$http,HOST,$window,$state,$rootScope,AUTH_EVENTS) {
     var token = JSON.parse($window.sessionStorage["userInfo"]).token;
 	
 	
@@ -42,7 +42,9 @@ function ($scope,$http,HOST,$window,$state) {
 			$scope.editState.editSuccess = true;	
 						
 			}).error(function(data,status,headers,config) {	
-				if(status==401)$state.go("login");
+				if(status==401){
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+				}
 				else{
 					$scope.editState.editFail = true
 					$scope.editState.editSuccess = false;
