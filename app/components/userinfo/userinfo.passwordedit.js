@@ -51,7 +51,7 @@ angular.module('com.pupil.app').directive('pPasswordedit', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/userinfo/passwordedit.html',
+    templateUrl: 'components/userinfo/userinfo.passwordedit.html',
     controller: 'PasswordeditController'
   };
 });

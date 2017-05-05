@@ -1,0 +1,32 @@
+
+
+<table id="example1" class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>时间</th>
+			<th>设备MAC地址</th>
+			<th>步数</th>
+			<th>行走距离(m)</th>
+			<th>心率(/分钟)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in lists">
+			<td>{{item.commitTime}}</td>
+			<td>{{item.device}}</td>
+			<td>{{item.step}}</td>
+			<td> {{item.distance}}</td>
+			<td>{{item.heart}}</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th>commitTime</th>
+			<th>device</th>
+			<th>step</th>
+			<th>distance</th>
+			<th>heart</th>
+		</tr>
+	</tfoot>
+</table>
+              

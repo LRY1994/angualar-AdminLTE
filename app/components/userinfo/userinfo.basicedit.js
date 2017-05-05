@@ -59,7 +59,7 @@ angular.module('com.pupil.app').directive('pBasicedit', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/userinfo/basicedit.html',
+    templateUrl: 'components/userinfo/userinfo.basicedit.html',
     controller: 'BasiceditController'
   };
 });

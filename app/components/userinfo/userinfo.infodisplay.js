@@ -32,7 +32,7 @@ angular.module('com.pupil.app').directive('pInfodisplay', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/userinfo/infodisplay.html',
+    templateUrl: 'components/userinfo/userinfo.infodisplay.html',
     controller: 'InfodisplayController'
   };
 });

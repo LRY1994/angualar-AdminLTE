@@ -7,7 +7,7 @@ angular.module('com.pupil.app').directive('pFooter', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/parts/footer.html',
+    templateUrl: 'components/layout/layout.footer.html',
     controller: 'FooterController'
   };
 });

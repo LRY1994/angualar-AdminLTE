@@ -11,7 +11,7 @@ angular.module('com.pupil.app').directive('pHeader', function () {
   return {
     restrict: 'EA',
     scope: {},
-    templateUrl: 'components/parts/header.html',
+    templateUrl: 'components/layout/layout.header.html',
     controller: 'HeaderController'
   };
 });

@@ -1,0 +1,40 @@
+<!--
+	作者：林瑞玉
+	时间：2017-05-06
+	描述：个人中心页面
+-->
+<div class="row">
+	<div class="col-md-3" style="background: white;margin: 3% 0;">
+		<ul class="nav nav-pills nav-stacked">
+			<li role="presentation" ng-click="select('infodisplay')"class="{{actives['infodisplay']}}">
+				<a href="javascript:void(0);">信息展示</a>
+			</li>
+  			<li role="presentation"ng-click="select('basicedit')"class="{{actives['basicedit']}}">
+  				<a href="javascript:void(0);">基本信息修改</a>
+  			</li>
+  			<li role="presentation"ng-click="select('passwordedit')"class="{{actives['passwordedit']}}">
+  				<a href="javascript:void(0);">密码修改</a>
+  			</li>
+  			
+		</ul>
+	</div>
+	<div class="col-md-8">
+		
+		<div ng-if="tabs=='infodisplay'">
+            <div p-infodisplay>
+            </div>
+        </div>
+        
+        <div ng-if="tabs=='basicedit'">
+            <div p-basicedit>
+            </div>
+        </div>
+        
+        <div ng-if="tabs=='passwordedit'">
+            <div p-passwordedit>
+            </div>
+        </div>
+		
+	</div>
+</div>
+

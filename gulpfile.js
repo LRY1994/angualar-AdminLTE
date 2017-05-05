@@ -68,13 +68,17 @@ gulp.task('minifyLibScripts',function(){
     
 gulp.task('minifyNgScripts',function(){
 	console.log("把HTML模板合并成一个文件");
-	var cptpl = gulp.src(['app/components/parts/*.html']) 			  
+	var cptpl = gulp.src(['app/components/layout/*.html']) 			  
  			  .pipe(templateCache({                
-                 root: 'components/parts'
+                 root: 'components/layout'
             }));
     var cutpl = gulp.src(['app/components/userinfo/*.html']) 			  
  			  .pipe(templateCache({                
                  root: 'components/userinfo'
+            }));
+    var mdtpl = gulp.src(['app/components/measuredata/*.html']) 			  
+ 			  .pipe(templateCache({                
+                 root: 'components/measuredata'
             }));
     var ctpl = gulp.src(['app/components/*.html']) 			  
  			  .pipe(templateCache({                
@@ -85,7 +89,7 @@ gulp.task('minifyNgScripts',function(){
                  root: 'pages'
             }));
  	console.log('压缩ngScripts：');
-    return es.merge(es.merge(gulp.src(ngScripts),cptpl,cutpl,ctpl,ptpl)
+    return es.merge(es.merge(gulp.src(ngScripts),cptpl,cutpl,mdtpl,ctpl,ptpl)
     		  .pipe(ngAnnotate())
     		  .pipe(concat('ng.min.js'))  
     		  .pipe(gulp.dest('./dist/js')));
