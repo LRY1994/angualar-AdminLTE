@@ -3,7 +3,9 @@
 angular.module('com.pupil.app')
 .controller('PasswordeditController', ['$scope','$http','HOST','$window','$timeout','$state',
 function ($scope,$http,HOST,$window,$timeout,$state) {
-	var token = $window.sessionStorage["token"].replace(/\"/g,'');
+	var token = JSON.parse($window.sessionStorage["userInfo"]).token;
+	
+	
 	$scope.editState = {
 		editSuccess : false,
 		editFail : false
@@ -27,9 +29,12 @@ function ($scope,$http,HOST,$window,$timeout,$state) {
 				},3000);
 											
 			}).error(function(data,status,headers,config) {
-				$scope.editState.editSuccess = false;
-				$scope.editState.editFail = true;
-				console.log("error");				
+				if(status==401)$state.go("login");
+				else{
+					$scope.editState.editSuccess = false;
+					$scope.editState.editFail = true;
+					console.log("error");
+				}
 			});	
 	};
 	

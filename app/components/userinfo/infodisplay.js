@@ -1,22 +1,21 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('InfodisplayController',['$scope','$http','HOST','$window',
-function ($scope,$http,HOST,$window) {
+.controller('InfodisplayController',['$scope','$http','HOST','$window','$state',
+function ($scope,$http,HOST,$window,$state) {
 	
 	$scope.getInfo = function() {	
-		 var token = $window.sessionStorage["token"].replace(/\"/g,'');
-		 console.log(token);
-		 console.log(HOST+'/api/'+token);
+		 var token = JSON.parse($window.sessionStorage["userInfo"]).token;
 		$http({
 			method: 'GET',
-			url: HOST+'/api/'+token,						
+			url: HOST+'/api/'+token						
 			}).success(function(data,status,headers,config) {
 				//console.log(data);									
 				$scope.user=data.user;	
 					
-			}).error(function(data,status,headers,config) {							
-				console.log("error");				
+			}).error(function(data,status,headers,config) {	
+				if(status==401)$state.go("login");
+				else {console.log("get info error");}			
 			});		
 	};
 	

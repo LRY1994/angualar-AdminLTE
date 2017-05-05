@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('com.pupil.app').
-controller('MeasurelistController', ['$scope','$http','HOST','$window',
-function ($scope,$http,HOST,$window) {
+controller('MeasurelistController', ['$scope','$http','HOST','$window','$state',
+function ($scope,$http,HOST,$window,$state) {
 //	startDate = new Date(new Date().toLocaleDateString()).getTime();
 //  endDate = new Date().getTime();
-  var token = $window.sessionStorage["token"].replace(/\"/g,'');
+	var token = JSON.parse($window.sessionStorage["userInfo"]).token;
+    
 	
 	$scope.fromTime="";
 	$scope.toTime="";
@@ -43,7 +44,7 @@ function ($scope,$http,HOST,$window) {
 			toTimeMills:toTime
 		}
 		}).success(function(data,status,headers,config) {
-			console.log(data);
+			
 			var lists=data.measures;	
 			angular.forEach(lists,function(data, index, array){                  		
 				data.commitTime= $scope.formatTime(data.commitTime);						
@@ -54,12 +55,16 @@ function ($scope,$http,HOST,$window) {
 				if(status==404){
 					$scope.lists=[];
 				}
-				console.log("error");				
+				else if(status==401){
+					$state.go("login");
+				}
+				else{
+					console.log("get data error");
+				}
 			});		
   };
   
-  $scope.query = function(){
-  	console.log('aaa');
+  $scope.query = function(){ 	
   	 $scope.getData();
   }
  

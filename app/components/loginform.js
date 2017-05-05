@@ -24,17 +24,17 @@ function($scope, $state, $window, AuthService ) {
 			//success function			
 			$state.go('home');
 		}, function(err) {
-			console.log(err);
+			console.log("login error");
 			$scope.error = true;
 		});
 	};
 	
 	// if a session exists for current user (page was refreshed)
 	// log him in again
-	if ($window.sessionStorage["userInfo"]) {
-		var credentials = JSON.parse($window.sessionStorage["userInfo"]);
-		$scope.login(credentials);
-	}
+//	if ($window.sessionStorage["userInfo"]) {
+//		var credentials = JSON.parse($window.sessionStorage["userInfo"]);
+//		$scope.login(credentials);
+//	}
 
 } ]);
 

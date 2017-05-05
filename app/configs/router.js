@@ -6,7 +6,7 @@
 
 angular.module('com.pupil.app')
 .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
-  // For any unmatched url, redirect to /
+ 
 $urlRouterProvider.when("","/login");
 //$urlRouterProvider
 //	.otherwise(function(inject, location) {

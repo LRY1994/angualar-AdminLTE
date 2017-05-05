@@ -16,8 +16,11 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 				'password':user.password
 			}
 		}).success(function(data,status,headers,config){
-			console.log(data);		
-			$window.sessionStorage["token"] = data.token;				
+				
+			//set the browser session, to avoid relogin on refresh
+			$window.sessionStorage["userInfo"] = JSON.stringify(data);	
+			
+			
 			Session.create(data);
 			$rootScope.currentUser = data;
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);				
@@ -25,8 +28,10 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 			
 		}).error(function(data,status,headers,config){
 			
-			$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-			error();
+			
+			  $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+			  error();
+			
 		});
 	}
 		
@@ -38,16 +43,17 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 	
 	//log out the user and broadcast the logoutSuccess event
 	AuthService.logout = function(){
-		
+		var token = JSON.parse($window.sessionStorage["userInfo"]).token;
 		$http({
-			method:"DELETE"
+			method:"DELETE",
+			url:HOST+"/api/"+token
 		}).success(function(data,status,headers,config){
 			Session.destroy();
-		    $window.sessionStorage.removeItem("token");
+		    $window.sessionStorage.removeItem("userInfo");
 		    $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
 	
 		}).error(function(data,status,headers,config){
-			
+			console.log("log out error");
 		})
 	};	
 

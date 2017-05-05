@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('RegisterController', [ '$scope', '$state','$http','$timeout','HOST', '$window',
-function($scope, $state,$http,$timeout,HOST,$window) {
+.controller('RegisterController', [ '$scope', '$state','$http','$timeout','HOST', '$window','Session',
+function($scope, $state,$http,$timeout,HOST,$window,Session) {
 	$scope.credentials = {};
 	$scope.registerForm = {};
 	$scope.error = false;
@@ -45,7 +45,8 @@ function($scope, $state,$http,$timeout,HOST,$window) {
 			}
 			}).success(function(data,status,headers,config) {
 				
-				$window.sessionStorage["token"] = data.token.replace(/\"/g,'');
+//				$window.sessionStorage["token"] = data.token.replace(/\"/g,'');
+//				Session.create(data);
 				//alert('添加成功');
 				$scope.registerState.regFail=false;
 				$scope.registerState.userExist=false;

@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('BasiceditController',['$scope','$http','HOST','$window',
-function ($scope,$http,HOST,$window) {
-	var token = $window.sessionStorage["token"].replace(/\"/g,'');
+.controller('BasiceditController',['$scope','$http','HOST','$window','$state',
+function ($scope,$http,HOST,$window,$state) {
+    var token = JSON.parse($window.sessionStorage["userInfo"]).token;
+	
+	
 	$scope.editState = {
 		editSuccess : false,
 		editFail : false
@@ -40,9 +42,12 @@ function ($scope,$http,HOST,$window) {
 			$scope.editState.editSuccess = true;	
 						
 			}).error(function(data,status,headers,config) {	
-				$scope.editState.editFail = true
-				$scope.editState.editSuccess = false;
-				console.log("error");				
+				if(status==401)$state.go("login");
+				else{
+					$scope.editState.editFail = true
+					$scope.editState.editSuccess = false;
+					console.log("error");
+				}
 			});	
 	}
 
