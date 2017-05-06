@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('com.pupil.app').
 controller('MeasuredataChartController', ['$scope','$http','HOST','$window','$rootScope','AUTH_EVENTS','$state',
@@ -14,13 +14,13 @@ function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS,$state) {
     
     $scope.formatTime = function(time) {
         var timeStamp = new Date(parseInt(time)),
-                
+        year = timeStamp.getFullYear();       
         month = timeStamp.getMonth() + 1,
         date = timeStamp.getDate() < 10 ? '0' + timeStamp.getDate() : timeStamp.getDate(),
         hour = timeStamp.getHours() < 10 ? '0' + timeStamp.getHours() : timeStamp.getHours(),
         minute = timeStamp.getMinutes() < 10 ? '0' + timeStamp.getMinutes() : timeStamp.getMinutes(),
         second = timeStamp.getSeconds() < 10 ? '0' + timeStamp.getSeconds() : timeStamp.getSeconds();
-        return month + '-' + date + ' ' + hour + ':' + minute + ':' + second;
+        return year + '-'+month + '-' + date + ' ' + hour + ':' + minute + ':' + second;
     };
             
     $scope.getData = function() {
@@ -105,7 +105,12 @@ $scope.chartOption = {
 		data: []
 	}],
 	yAxis: [{
-		name: 'METRICS',
+		name: '步（步数）',
+		type: 'value',
+		splitArea: {
+			show: true
+		}},{
+		name: '米（距离）,次/分钟（心率）',
 		type: 'value',
 		splitArea: {
 			show: true

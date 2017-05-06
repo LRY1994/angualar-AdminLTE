@@ -8,7 +8,7 @@
 	}
 </style>
 <div class="row">
-        <div class="col-xs-12">
+    <div class="col-xs-12">
           
           <div class="box">
             <div class="box-header">
@@ -50,7 +50,7 @@
 					<li ng-click="select('chart')" class="{{actives['chart']}} choice-li">
 						<a href="javascript:void(0);"><i class="fa fa-line-chart" aria-hidden="true">图表</i></a>
 					</li>
-				</div>
+				</ul>
 				
 				<div ng-if="tabs=='table'">
                     <div p-measuredata-table
@@ -64,7 +64,7 @@
         		
         		<div ng-if="tabs=='chart'">
                     <div p-measuredata-chart
-                    	style="height:350px;"
+                    	style="height:350px;width:auto"
                     	id="dataChart"
                     	from-time="fromTime"
                     	to-time="toTime"
@@ -73,9 +73,10 @@
            			</div>
         		</div>
 				              
-           </div>           
-          </div>          
-        </div>        
+           
+          </div>
+         </div>          
+    </div>        
 </div>
 
 <script>
