@@ -66,6 +66,9 @@ function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS,$state) {
     
     $scope.getData();
     
+    $scope.$on("updateData",function(){
+    	$scope.getData();
+    });
  
 }]);
 angular.module('com.pupil.app').directive('pMeasuredataTable', function () {

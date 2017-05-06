@@ -32,6 +32,10 @@ function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS,$state) {
                     second = timeStamp.getSeconds() < 10 ? '0' + timeStamp.getSeconds() : timeStamp.getSeconds();
                 return month + '-' + date + ' ' + hour + ':' + minute + ':' + second;
     };
+    
+    $scope.query = function(){
+    	$scope.$broadcast("updateData");
+    }
 }]);
 angular.module('com.pupil.app').directive('pMeasuredata', function () {
   return {

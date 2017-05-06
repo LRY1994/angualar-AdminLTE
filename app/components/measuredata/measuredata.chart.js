@@ -165,6 +165,9 @@ function addChartEvent() {
 }
 
 $scope.getData();
+$scope.$on("updateData",function(){
+    	$scope.getData();
+    });
 }]);
 angular.module('com.pupil.app').directive('pMeasuredataChart', function () {
   return {
