@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('com.pupil.app')
-.controller('PasswordeditController', ['$scope','$http','HOST','$window','$timeout','$rootScope','AUTH_EVENTS',
-function ($scope,$http,HOST,$window,$timeout,$rootScope,AUTH_EVENTS) {
+.controller('PasswordeditController', ['$scope','$http','HOST','$window','$timeout','$rootScope','AUTH_EVENTS','$state',
+function ($scope,$http,HOST,$window,$timeout,$rootScope,AUTH_EVENTS,$state) {
 	var token = JSON.parse($window.sessionStorage["userInfo"]).token;
 	
 	
