@@ -5,11 +5,13 @@
 
 angular.module('com.pupil.app').service('Session', function($rootScope) {
 
-	this.create = function(user) {
-		this.user = user;		
+	this.create = function(user,psw) {
+		this.user = user;	
+		this.psw = psw;
 	};
 	this.destroy = function() {
-		this.user = null;		
+		this.user = null;	
+		this.psw = null;
 	};
 	return this;
 });

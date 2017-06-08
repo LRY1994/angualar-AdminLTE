@@ -56,7 +56,7 @@
 				</div>
 				<div class="error col-sm-offset-2"
 		     		ng-show="(submitted  || registerForm.password.$dirty)  && registerForm.password.$invalid">
-		    		<p class="error" ng-show="registerForm.password.$error.required">账号不能为空</p>
+		    		<p class="error" ng-show="registerForm.password.$error.required">密码不能为空</p>
 				</div>
 				<!--密码-->
 				
@@ -137,13 +137,13 @@
               <!-- /.box-footer -->
             </form>
           </div>
-
-<script>
-	$(function() {
+<script type="text/javascript">
+$(function() {
 	$('input').iCheck( {
-		checkboxClass: 'icheckbox_square-blue', radioClass: 'iradio_square-blue', increaseArea: '20%' // optional
+		checkboxClass: 'icheckbox_square-blue', 
+		radioClass: 'iradio_square-blue', 
+		increaseArea: '20%' // optional
 	}
 	);
-}
-
-);</script>
+});
+</script>

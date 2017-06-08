@@ -39,7 +39,7 @@
 					</div>
             	
             	
- 					<button type="submit" class="btn btn-primary">查询</button>
+ 					<button type="submit" class="btn btn-primary" ng-click="query()">查询</button>
 				</form>
 				
 				<ul class="nav nav-pills col-md-offset-10">  
@@ -55,20 +55,17 @@
 				<div ng-if="tabs=='table'">
                     <div p-measuredata-table
                     	from-time="fromTime"
-                    	to-time="toTime"
-                    	
-                    	
+                    	to-time="toTime"                   	                   	
                     	>
            			</div>
         		</div>
         		
         		<div ng-if="tabs=='chart'">
                     <div p-measuredata-chart
-                    	style="height:350px;width:auto"
+                    	style="height:350px;width:90%;margin:0 auto "
                     	id="dataChart"
                     	from-time="fromTime"
-                    	to-time="toTime"
-                    	
+                    	to-time="toTime"                    	
                     	>
            			</div>
         		</div>
@@ -78,25 +75,24 @@
          </div>          
     </div>        
 </div>
-
-<script>
-	$(function() {
-			$("#datepicker1").datepicker({
-				language: "zh-CN",
-				autoclose: true, //选中之后自动隐藏日期选择框
-				clearBtn: true, //清除按钮
-				todayHighlight: true,
-				//          todayBtn: true,//今日按钮,这个点击了没反应，有bug
-				format: "yyyy/mm/dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
-			});
-			$("#datepicker2").datepicker({
-				language: "zh-CN",
-				autoclose: true, //选中之后自动隐藏日期选择框
-				clearBtn: true, //清除按钮
-				todayHighlight: true,
-				//          todayBtn: true,//今日按钮,这个点击了没反应，有bug
-				format: "yyyy/mm/dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
-			});// 
+<script type="text/javascript">
+$(function() {
+	$("#datepicker1").datepicker({
+		language: "zh-CN",
+		autoclose: true, //选中之后自动隐藏日期选择框
+		clearBtn: true, //清除按钮
+		todayHighlight: true,
+	//  todayBtn: true,//今日按钮,这个点击了没反应，有bug
+		format: "yyyy/mm/dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+	});
+	$("#datepicker2").datepicker({
+		language: "zh-CN",
+		autoclose: true, //选中之后自动隐藏日期选择框
+		clearBtn: true, //清除按钮
+		todayHighlight: true,
+	//  todayBtn: true,//今日按钮,这个点击了没反应，有bug
+		format: "yyyy/mm/dd" //日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+	});// 
 //  $('#example1').DataTable({
 //    "paging": true,
 //    "lengthChange": true,
@@ -105,5 +101,5 @@
 //    "info": true,
 //    "autoWidth": false
 //  });
-});
-</script>     
+}); 
+</script>

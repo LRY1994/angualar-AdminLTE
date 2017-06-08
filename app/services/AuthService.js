@@ -19,7 +19,7 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS,HOST) {
 			}
 		}).success(function(data,status,headers,config){							
 			$window.sessionStorage["userInfo"] = JSON.stringify(data);							
-			Session.create(data);
+			Session.create(data,user.password);
 			$rootScope.currentUser = data;
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);				
 			success(data);

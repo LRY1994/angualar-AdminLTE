@@ -37,9 +37,10 @@ function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS,$state) {
  			toTimeMills: btoTime
  		}
  	}).success(function(data, status, headers, config) {
-
+        //console.log(data);
  		lists = data.measures;
  		$scope.loadData2Table(lists);
+ 		console.log("success");
 
  	}).error(function(data, status, headers, config) {
  		if(status == 404) {

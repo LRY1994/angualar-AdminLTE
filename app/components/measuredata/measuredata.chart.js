@@ -48,6 +48,7 @@ function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS,$state) {
 	}).success(function(data, status, headers, config) {
 
 		lists = data.measures;
+		console.log(lists);
 		$scope.loadData2Chart(lists);
 
 	}).error(function(data, status, headers, config) {
@@ -66,8 +67,7 @@ function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS,$state) {
 };
 $scope.chartOption = {
 	title: {
-		text: '测量数据',
-		subtext: '周期:60s'
+		text: '测量数据',		
 	},
 	tooltip: {
 		trigger: 'axis',
@@ -133,7 +133,10 @@ $scope.chartOption = {
 
 //刷新后给echarts填充数据
 $scope.loadData2Chart = function(datalists) {
-
+	$scope.chartOption.xAxis[0].data.length=0;
+	$scope.chartOption.series[0].data.length=0;
+	$scope.chartOption.series[1].data.length=0;
+	$scope.chartOption.series[2].data.length=0;
 	var length = datalists.length;
 	for(var j = 0; j < length; j++) {
 		$scope.chartOption.xAxis[0].data[j] = $scope.formatTime(datalists[j].commitTime);

@@ -16,15 +16,12 @@ function ($scope,$http,HOST,$window,$state,$rootScope,AUTH_EVENTS) {
 //		 console.log(userInfo);
 		$http({
 			method: 'GET',
-			url: HOST+'/api/'+token,			
-		
-			}).success(function(data,status,headers,config) {
-								
-			    $scope.user=data.user;	
-					
-			}).error(function(data,status,headers,config) {							
+			url: HOST+'/api/'+token,					
+		}).success(function(data,status,headers,config) {								
+			    $scope.user=data.user;						
+		}).error(function(data,status,headers,config) {							
 				console.log("error");				
-			});		
+		});		
 	};
 	
 	

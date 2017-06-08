@@ -1,5 +1,5 @@
 'use strict';
-
+//userinfo.js
 angular.module('com.pupil.app')
 .controller('UserinfoController',['$scope','$http','HOST','$window','$rootScope','AUTH_EVENTS',
 function ($scope,$http,HOST,$window,$rootScope,AUTH_EVENTS) {

@@ -29,12 +29,14 @@
 	html, body{
 		height:100% !important;
 	}
+	body{
+		background: #d2d6de;
+	}
 </style>
 
-<body  
-	ng-controller="HomeIndexController"
-	class="hold-transition skin-blue sidebar-mini " 
-	style="background: #d2d6de; ">
+<body  ng-controller="HomeIndexController"
+	class="hold-transition skin-blue sidebar-mini ">
+	
 
     
 		<div ui-view style="height: 100%;"></div>
@@ -75,6 +77,14 @@
 <script src="services/Session.js"></script>
 <script src="services/AuthService.js"></script>
 <!--/build-->
+<script type="text/javascript">
+	$(document).ready(function(){
+		function stopScrolling(event){
+			event.preventDefault();
+		}
+		document.addEventListener('scroll',stopScrolling,false);
 
+	});
+</script>
 </body>
 </html>

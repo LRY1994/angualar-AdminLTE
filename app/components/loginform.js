@@ -2,9 +2,11 @@
  * loginform.js
  */
 'use strict';
+
+  
 angular.module('com.pupil.app')
-.controller('LoginController', [ '$scope', '$state', '$window', 'AuthService', 
-function($scope, $state, $window, AuthService ) {
+.controller('LoginController', [ '$scope', '$state', '$window', 'AuthService', 'Session',
+function($scope, $state, $window, AuthService ,Session) {
 	$scope.credentials = {};
 	$scope.loginForm = {};
 	$scope.error = false;
@@ -32,7 +34,9 @@ function($scope, $state, $window, AuthService ) {
 	// if a session exists for current user (page was refreshed)
 	// log him in again
 //	if ($window.sessionStorage["userInfo"]) {
-//		var credentials = JSON.parse($window.sessionStorage["userInfo"]);
+//		var credentials;
+//		credentials= JSON.parse($window.sessionStorage["userInfo"]).accountNumber;
+//		//credentials.password=Session.psw;
 //		$scope.login(credentials);
 //	}
 
